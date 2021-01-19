@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const City = () => {
-  const [singleCity, setSingleSet] = useState();
+  const [rest, setRest] = useState();
 
   let myHeader = new Headers();
   myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
@@ -13,25 +13,27 @@ const City = () => {
     redirect: "follow",
   };
 
-  const getCitys = async (city) => {
-    const response = await fetch(
-      `https://developers.zomato.com/api/v2.1/cities?q=${city}`,
-      requestOption
-    );
-    const cityData = await response.json();
-
-    console.log(cityData.location_suggestions[1].name, "cityData");
-    setSingleSet(cityData.location_suggestions);
-  };
-
-  useEffect(() => {
-    getCitys("berlin");
+    const getData = async (id) => {
+    /* const response = await fetch(`https://developers.zomato.com/api/v2.1/cities?q=${city}`, */
+    const response = await fetch(`https://developers.zomato.com/api/v2.1/establishments?city_id=${id}`, 
+    requestOption)
+   const data = await response.json();
+   console.log('data', id);
+   console.log('data', data);
+   console.log('data', data.establishments);
+   setRest(data.establishments)
+ }; 
+  useEffect(()=> {
+      getData("280");
   }, []);
+ 
+ 
+ 
 
   return (
     <div>
       <h1>hi</h1>
-      {singleCity && <div>{singleCity[0].name}</div>}
+      {rest && <div>{rest[0].name}</div>}
      {/*  <div> {singleCity[0].country_name}</div>
       {
         <img
@@ -65,3 +67,9 @@ export default City;
  
  */
 
+/**{data &&  !selected && data.map((item, id) => {
+                return (
+                    <Card item={item} key={item.id} setSelected={setSelected} />
+                )
+            })}
+            {selected && <City city={selected.id} setSelected={setSelected} />} */

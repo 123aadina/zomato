@@ -26,24 +26,19 @@ import Search from "./Search";
         );
         const cityData = await response.json();
     
-        console.log(cityData.location_suggestions[1], "cityData");
+        console.log(cityData.location_suggestions, "cityData");
         setData(cityData.location_suggestions);
       };
     
       useEffect(() => {
-        getCitys("berlin");
+        getCitys("");
       }, []);
  
 
     return (
         <div>
-            <Search />
-            {data &&  !selected && data.map((item, id) => {
-                return (
-                    <Card item={item} key={item.id} setSelected={setSelected} />
-                )
-            })}
-            {selected && <City city={selected.id} setSelected={setSelected} />}
+            <Search getCitys={(value) => getCitys(value)} />
+            
         </div>
     )
 }

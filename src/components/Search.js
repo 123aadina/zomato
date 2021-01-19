@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
 
-const Search = () => {
+const Search = ({getCity}) => {
     const [city, setCity] = useState("")
     return (
         <div>
-            <input type="text" onChange={() => console.log("object")} placeholder="search..."/>
+            <input type="text" onChange={(event) => setCity(event.target.value)} placeholder="search..."/>
+            <button onClick={() => getCity(city)}>Search</button>
         </div>
     )
 }
