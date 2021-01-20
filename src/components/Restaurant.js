@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Card from "./Card";
 
-const Restaurant = () => {
-  const [rest, setRest] = useState();
+const Restaurant = ({ cityId, setSelected }) => {
+  const [rest, setRest] = useState([]);
 
   let myHeader = new Headers();
   myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
-  /* "content-type": "application/json" */
+ 
 
   let requestOption = {
     method: "GET",
@@ -13,18 +14,17 @@ const Restaurant = () => {
     redirect: "follow",
   };
 
-    const getData = async (id) => {
-    /* const response = await fetch(`https://developers.zomato.com/api/v2.1/cities?q=${restaurant}`, */
-    const response = await fetch(`https://developers.zomato.com/api/v2.1/establishments?city_id=${id}`, 
+    const getRestaurant = async () => {
+    const response = await fetch(`https://developers.zomato.com/api/v2.1/search?res_id=${cityId}&entity_type=city`, 
     requestOption)
    const data = await response.json();
-   console.log('data', id);
+   console.log('data', cityId);
    console.log('data', data);
-   console.log('data', data.establishments);
-   setRest(data.establishments)
+   console.log('data.restaurants', data.restaurants);
+   setRest(data.restaurants)
  }; 
   useEffect(()=> {
-      getData("280");
+    getRestaurant();
   }, []);
  
  
@@ -33,7 +33,12 @@ const Restaurant = () => {
   return (
     <div>
       <h1>hi</h1>
-      {rest && <div>{rest[0].name}</div>}
+      {rest.length !== 0 &&  rest.map((item, id) => {
+                return (
+                    <Card item={item} key={item.id} setSelected={setSelected} />
+                )
+            })}
+      
      {/*  <div> {singleCity[0].country_name}</div>
       {
         <img
@@ -73,3 +78,21 @@ export default Restaurant;
                 )
             })}
             {selected && <City city={selected.id} setSelected={setSelected} />} */
+
+
+            /**
+     const getCitys = async (city) => {
+        const response = await fetch(
+          `https://developers.zomato.com/api/v2.1/cities?q=${city}`,
+          requestOption
+        );
+        const data = await response.json();
+    
+        console.log(data.location_suggestions, "data");
+        setData(data.location_suggestions);
+      };
+    
+      useEffect(() => {
+        getCitys("");
+      }, []);
+  */
