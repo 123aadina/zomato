@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Restaurant from "./Restaurant";
+import RestaurantList from "./RestaurantList";
 import Search from "./Search";
+import Restaurant from "./Restaurant";
 
 
 
 const Home = () => {
-    /* const [data, setData] = useState(); */
-    const [selected, setSelected] = useState(null)
+    const [restaurant, setRestaurant] = useState(null)
     const [cities, setCities] = useState(null)
+    const [cityId, setCityId] = useState(null)
+
 
 
     let myHeader = new Headers()
@@ -33,19 +35,21 @@ const Home = () => {
 
 
 const handleCitySelect = (city) => {
-    setSelected(city.id)
+    setCityId(city.id)
 }
 
     return (
         <div>
             <Search getCitys={(value) => getCitys(value)} />
-            {cities && !selected && cities.map(city => {
+            {cities && !cityId && cities.map(city => {
                 return (<div>
                     <p>{city.name}</p>
                     <button onClick={() =>handleCitySelect(city)} >Select</button>
                 </div>)
             })}
-            {selected && <Restaurant cityId={selected} setSelected={setSelected} />}
+            {cityId && !restaurant &&<RestaurantList cityId={cityId} setRestaurant={setRestaurant} />}
+           {restaurant && <Restaurant item={restaurant} />} 
+
         </div>
     )
 };

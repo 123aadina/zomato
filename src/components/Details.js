@@ -1,40 +1,19 @@
-/* import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-const Details = () => {
+const Details = ({item}) => {
 
-    const [singleRest, setSingleRest] = useState({});
-
-    let myHeader = new Headers();
-    myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
-   
-  
-    let requestOption = {
-      method: "GET",
-      headers: myHeader,
-      redirect: "follow",
-    };
-  
-      const getSingleRest= async () => {
-      const response = await fetch(`https://developers.zomato.com/api/v2.1/cities?q=${restaurant}`,
-      const response = await fetch(`https://developers.zomato.com/api/v2.1/establishments?city_id=${cityId}`, 
-      requestOption)
-     const data = await response.json();
-     console.log('data', );
-     console.log('data', data);
-     console.log('data.establishments', data.establishments);
-     setSingleRest(data.establishments)
-   }; 
-    useEffect(()=> {
-        getSingleRest();
-    }, []);
-
+    console.log("item", item)
 
     return (
         <div>
-            <h2>Details</h2>
+            <h2>{item.name}</h2>
+            <h3>{item.address}</h3> 
+            <h3>{item.url}</h3> 
+            <h3>{item.price_range}</h3> 
+            <h3>{item.currency}</h3> 
+            <h3>{item.highlights}</h3>
         </div>
     )
 }
 
 export default Details
- */
