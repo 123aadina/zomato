@@ -1,26 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import Details from "./Details";
+import Button from "@material-ui/core/Button";
 
-const Restaurant = ({item}) =>  {  
-const [showDetails, setShowDetails] = useState(false);
+const Restaurant = ({ item }) => {
+  const [showDetails, setShowDetails] = useState(false);
 
-console.log('item', item);
+  console.log("item", item);
 
+  const handleRestSelect = (item) => {
+    setShowDetails(!showDetails);
+  };
 
-
-const handleRestSelect = (item)=> {
-    setShowDetails(!showDetails)
-      }
-
-    return (
-        <div>
-            <div>
-               <h3>{item.name}</h3>
-                    <button onClick={handleRestSelect} >More Information</button>
-                </div>
-                {showDetails && <Details item={item} />}
-        </div>
-    )
-}
+  return (
+    <div>
+      <div className="restDetail">
+        <div>{item.name}</div>
+        <Button onClick={handleRestSelect}>More Information</Button>
+      </div>
+      {showDetails && <Details item={item} />}
+    </div>
+  );
+};
 export default Restaurant;
-

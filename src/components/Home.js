@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from "react";
 import RestaurantList from "./RestaurantList";
+
 import Search from "./Search";
 import Restaurant from "./Restaurant";
-
-
+import Button from "@material-ui/core/Button";
+import { RestaurantContext } from "../context/RestaurantContext";
+import CitiesList from "./CitiesList";
 
 const Home = () => {
-    const [restaurant, setRestaurant] = useState(null)
+  /*  const [restaurant, setRestaurant] = useState(null)
     const [cities, setCities] = useState(null)
     const [cityId, setCityId] = useState(null)
 
@@ -33,25 +35,16 @@ const Home = () => {
         setCities(data.location_suggestions);
     };
 
+ */
+  const { cities, cityId, restaurants } = useContext(RestaurantContext);
 
-const handleCitySelect = (city) => {
-    setCityId(city.id)
-}
-
-    return (
-        <div>
-            <Search getCitys={(value) => getCitys(value)} />
-            {cities && !cityId && cities.map(city => {
-                return (<div>
-                    <p>{city.name}</p>
-                    <button onClick={() =>handleCitySelect(city)} >Select</button>
-                </div>)
-            })}
-            {cityId && !restaurant &&<RestaurantList cityId={cityId} setRestaurant={setRestaurant} />}
-           {restaurant && <Restaurant item={restaurant} />} 
-
-        </div>
-    )
+  return (
+    <div className="container">
+      <Search />
+      {!cityId && <CitiesList />}
+      {cityId && !restaurants && <RestaurantList cityId={cityId} />}
+      {/* {restaurant && <Restaurant item={restaurant} />} */}
+    </div>
+  );
 };
 export default Home;
-

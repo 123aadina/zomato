@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.input {
+    background-color: brown;
+    height: 100px;
+    padding: 20px;
+}
+
+.city{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    border:1px solid rgb(231, 217, 217);
+}
+
+.cityName{
+    padding: 20px;
+    flex-wrap: 1;
+}
+
+.restName {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.restDetail{
+    padding-top: 30px;
+}
+
+.list {
+    padding: 20px;
+}

@@ -1,19 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Card } from "@material-ui/core";
 
-const Details = ({item}) => {
+const Details = ({ item }) => {
+  console.log("item", item);
 
-    console.log("item", item)
+  return (
+    <div className="info">
+      <div className="list">Name: {item.name}</div>
+      <div className="list"> Address: {item.address}</div>
+      <div className="list"> Url: {item.url}</div>
+      <div className="list"> Price: {item.price_range}</div>
+      {/* <div> Currency: {item.currency}</div>  */}
+      <div className="list"> Highlights: {item.highlights}</div>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <h2>{item.name}</h2>
-            <h3>{item.address}</h3> 
-            <h3>{item.url}</h3> 
-            <h3>{item.price_range}</h3> 
-            <h3>{item.currency}</h3> 
-            <h3>{item.highlights}</h3>
-        </div>
-    )
-}
-
-export default Details
+export default Details;

@@ -1,12 +1,15 @@
-import React,{useState} from 'react'
-
-const Search = ({getCitys}) => {
+import React,{useState, useContext} from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import {RestaurantContext, RestaurantContextProvider} from "../context/RestaurantContext"
+const Search = () => {
+    const {getCitys} = useContext(RestaurantContext)
     const [city, setCity] = useState("");
     
     return (
-        <div>
-            <input type="text" onChange={(event) => setCity(event.target.value)} placeholder="search..."/>
-            <button onClick={() => getCitys(city)}>Search</button>
+        <div className="input">
+            <TextField type="text" onChange={(event) => setCity(event.target.value)} placeholder="search..."/>
+            <Button size="small" variant="contained" color="primary" onClick={() => getCitys(city)}>Search</Button>
         </div>
     )
 }
