@@ -62,7 +62,7 @@ export const RestaurantContextProvider = ({ children }) => {
 
   return (
     <RestaurantContext.Provider
-      value={{ restaurants, cityId, cities, getCitys, handleCitySelect, handleRestSelect }}
+      value={{ restaurants, cityId, cities, getCitys, handleCitySelect, handleRestSelect, rest}}
     >
       {children}
     </RestaurantContext.Provider>
