@@ -1,7 +1,7 @@
 import React,{useState, useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {RestaurantContext, RestaurantContextProvider} from "../context/RestaurantContext"
+import {RestaurantContext} from "../context/RestaurantContext"
 const Search = () => {
     const {getCitys} = useContext(RestaurantContext)
     const [city, setCity] = useState("");
