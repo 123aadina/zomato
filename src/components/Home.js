@@ -6,14 +6,14 @@ import { RestaurantContext } from "../context/RestaurantContext";
 import CitiesList from "./CitiesList";
 
 const Home = () => {
-  const { cities, cityId, restaurants } = useContext(RestaurantContext);
+  const { cities, cityId, restaurants ,rest} = useContext(RestaurantContext);
 
   return (
     <div className="container">
       <Search />
-      {!cityId && <CitiesList />}
-      {cityId && !restaurants && <RestaurantList cityId={cityId} />}
-      {restaurants && <Restaurant item={restaurants} />}
+      {!cityId && cities &&  <CitiesList />}
+      {cityId && restaurants && !rest && <RestaurantList />}
+      {rest && <Restaurant />}
     </div>
   );
 };

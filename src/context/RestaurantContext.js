@@ -4,7 +4,7 @@ const initContext = {
   restaurants: [],
   cities: [],
   cityId: "",
-  rest:[],
+  rest:null,
 };
 
 export const RestaurantContext = createContext(initContext);
@@ -38,6 +38,7 @@ export const RestaurantContextProvider = ({ children }) => {
 
   const handleCitySelect = (city) => {
     setCityId(city.id);
+    getRestaurants()
   };
 
 
@@ -50,14 +51,13 @@ export const RestaurantContextProvider = ({ children }) => {
     console.log("data", cityId);
     console.log("data", data);
     console.log("data.restaurants", data.restaurants);
-    setRest(data.restaurants);
+    setRestaurants(data.restaurants);
   };
-  useEffect(() => {
-    getRestaurants();
-  }, []);
+
+
 
   const handleRestSelect = (item) => {
-    setRestaurants(item);
+    setRest(item);
   };
 
   return (

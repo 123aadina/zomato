@@ -3,12 +3,12 @@ import Button from "@material-ui/core/Button";
 import {RestaurantContext} from "../context/RestaurantContext";
 
 const RestaurantList = () => {
-const {rest, handleRestSelect} = useContext(RestaurantContext)
+const {restaurants, handleRestSelect} = useContext(RestaurantContext)
 
   return (
     <div>
-      {rest.length !== 0 &&
-        rest.map((item, id) => {
+      {restaurants.length !== 0 &&
+        restaurants.map((item, id) => {
           return (
             <div className="restName">
               <div>{item.restaurant.name}</div>
