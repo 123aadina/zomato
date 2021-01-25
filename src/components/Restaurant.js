@@ -5,7 +5,7 @@ import {RestaurantContext} from "../context/RestaurantContext";
 
 const Restaurant = () => {
   const [showDetails, setShowDetails] = useState(false);
-  const {rest} = useContext(RestaurantContext)
+  const {restaurant} = useContext(RestaurantContext)
 
 
    const handleShowMore = () => {
@@ -15,10 +15,10 @@ const Restaurant = () => {
   return (
     <div>
       <div className="restDetail">
-        <div>{rest.name}</div>
+        <div>{restaurant.name}</div>
         <Button onClick={handleShowMore}>More Information</Button>
       </div>
-      {showDetails && <Details item={rest} />}
+      {showDetails && <Details item={restaurant} />}
     </div>
   );
 };

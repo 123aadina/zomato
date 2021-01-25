@@ -1,9 +1,10 @@
 import React ,{useContext}from "react";
 import Button from '@material-ui/core/Button';
-import {RestaurantContext} from "../context/RestaurantContext"
+import {RestaurantContext} from "../context/RestaurantContext";
+
 
 const CitiesList = () => {
-    const {cities , handleCitySelect} = useContext(RestaurantContext)
+    const {cities , handleCitySelect} = useContext(RestaurantContext);
   return (
     <div>
       {cities &&

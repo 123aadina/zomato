@@ -1,9 +1,11 @@
 import React,{useState, useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {RestaurantContext} from "../context/RestaurantContext"
+import {RestaurantContext} from "../context/RestaurantContext";
+
+
 const Search = () => {
-    const {getCitys} = useContext(RestaurantContext)
+    const {getCitys} = useContext(RestaurantContext);
     const [city, setCity] = useState("");
     
     return (
@@ -12,6 +14,6 @@ const Search = () => {
             <Button size="small" variant="contained" color="primary" onClick={() => getCitys(city)}>Search</Button>
         </div>
     )
-}
+};
 
 export default Search;

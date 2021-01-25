@@ -1,10 +1,10 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 
 const initContext = {
   restaurants: [],
   cities: [],
   cityId: "",
-  rest:null,
+  restaurant:null,
 };
 
 export const RestaurantContext = createContext(initContext);
@@ -14,7 +14,7 @@ export const RestaurantContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState(initContext.restaurants);
   const [cities, setCities] = useState(initContext.cities);
   const [cityId, setCityId] = useState(initContext.cityId);
-  const [rest, setRest] = useState(initContext.rest);
+  const [restaurant, setRestaurant] = useState(initContext.rest);
 
   let myHeader = new Headers();
   myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
@@ -57,12 +57,12 @@ export const RestaurantContextProvider = ({ children }) => {
 
 
   const handleRestSelect = (item) => {
-    setRest(item);
+    setRestaurant(item);
   };
 
   return (
     <RestaurantContext.Provider
-      value={{ restaurants, cityId, cities, getCitys, handleCitySelect, handleRestSelect, rest}}
+      value={{ restaurants, cityId, cities, getCitys, handleCitySelect, handleRestSelect, restaurant}}
     >
       {children}
     </RestaurantContext.Provider>
