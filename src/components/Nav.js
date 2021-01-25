@@ -31,8 +31,6 @@ const Nav = () => {
             Details
           </Link>
         </li>
-      
-      
       </ul>
     </nav>
   );

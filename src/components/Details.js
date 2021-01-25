@@ -6,6 +6,7 @@ const Details = ({ item }) => {
 
   return (
     <div className="info">
+        <h1>Details</h1>
       <div className="list">Name: {item.name}</div>
       <div className="list"> Address: {item.address}</div>
       <div className="list"> Url: {item.url}</div>

@@ -15,7 +15,7 @@ const Restaurant = () => {
   return (
     <div>
       <div className="restDetail">
-        <div>{restaurant.name}</div>
+       {restaurant && <div>{restaurant.name}</div>}
         <Button onClick={handleShowMore}>More Information</Button>
       </div>
       {showDetails && <Details item={restaurant} />}

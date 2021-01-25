@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { useHistory } from "react-router-dom";
 
 const initContext = {
   restaurants: [],
@@ -10,6 +11,9 @@ const initContext = {
 export const RestaurantContext = createContext(initContext);
 
 export const RestaurantContextProvider = ({ children }) => {
+
+  let history = useHistory();
+
   const [restaurants, setRestaurants] = useState(initContext.restaurants);
   const [cities, setCities] = useState(initContext.cities);
   const [cityId, setCityId] = useState(initContext.cityId);
@@ -33,6 +37,7 @@ export const RestaurantContextProvider = ({ children }) => {
 
     console.log(data.location_suggestions, "data");
     setCities(data.location_suggestions);
+    history.push("/citiesList");
   };
 
   const handleCitySelect = (city) => {
@@ -51,17 +56,19 @@ export const RestaurantContextProvider = ({ children }) => {
     console.log("data", data);
     console.log("data.restaurants", data.restaurants);
     setRestaurants(data.restaurants);
+    history.push("/restaurantList");
   };
 
 
 
-  const handleRestSelect = (item) => {
+  const handleRestaurantSelect = (item) => {
     setRestaurant(item);
+    history.push("/restaurant");
   };
 
   return (
     <RestaurantContext.Provider
-      value={{ restaurants, cityId, cities, getCities, handleCitySelect, handleRestSelect, restaurant}}
+      value={{ restaurants, cityId, cities, getCities, handleCitySelect, handleRestaurantSelect, restaurant}}
     >
       {children}
     </RestaurantContext.Provider>
