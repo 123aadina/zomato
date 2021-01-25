@@ -10,11 +10,10 @@ const initContext = {
 export const RestaurantContext = createContext(initContext);
 
 export const RestaurantContextProvider = ({ children }) => {
-  //const [characters, setCharacters] = useState(initContext.characters)
   const [restaurants, setRestaurants] = useState(initContext.restaurants);
   const [cities, setCities] = useState(initContext.cities);
   const [cityId, setCityId] = useState(initContext.cityId);
-  const [restaurant, setRestaurant] = useState(initContext.rest);
+  const [restaurant, setRestaurant] = useState(initContext.restaurant);
 
   let myHeader = new Headers();
   myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
@@ -25,7 +24,7 @@ export const RestaurantContextProvider = ({ children }) => {
     redirect: "follow",
   };
 
-  const getCitys = async (city) => {
+  const getCities = async (city) => {
     const response = await fetch(
       `https://developers.zomato.com/api/v2.1/cities?q=${city}`,
       requestOption
@@ -62,7 +61,7 @@ export const RestaurantContextProvider = ({ children }) => {
 
   return (
     <RestaurantContext.Provider
-      value={{ restaurants, cityId, cities, getCitys, handleCitySelect, handleRestSelect, restaurant}}
+      value={{ restaurants, cityId, cities, getCities, handleCitySelect, handleRestSelect, restaurant}}
     >
       {children}
     </RestaurantContext.Provider>

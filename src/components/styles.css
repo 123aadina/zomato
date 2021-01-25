@@ -7,6 +7,24 @@
     height: 100%;
     width: 100%;
 }
+ 
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background: crimson;
+    color: white;
+}
+.nav-link {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+
 
 .input {
     background-color: brown;

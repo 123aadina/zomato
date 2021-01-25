@@ -5,13 +5,13 @@ import {RestaurantContext} from "../context/RestaurantContext";
 
 
 const Search = () => {
-    const {getCitys} = useContext(RestaurantContext);
+    const {getCities} = useContext(RestaurantContext);
     const [city, setCity] = useState("");
     
     return (
         <div className="input">
             <TextField type="text" onChange={(event) => setCity(event.target.value)} placeholder="search..."/>
-            <Button size="small" variant="contained" color="primary" onClick={() => getCitys(city)}>Search</Button>
+            <Button size="small" variant="contained" color="primary" onClick={() => getCities(city)}>Search</Button>
         </div>
     )
 };

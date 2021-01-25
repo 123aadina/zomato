@@ -7,6 +7,7 @@ const CitiesList = () => {
     const {cities , handleCitySelect} = useContext(RestaurantContext);
   return (
     <div>
+      <h1>CitiesList</h1>
       {cities &&
         cities.map((city) => {
           return (
