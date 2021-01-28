@@ -3,9 +3,23 @@
     box-sizing: border-box;
 }
 
+body {
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 50PX;
+}
 .container {
     height: 100%;
     width: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 50PX;
+}
+
+h1 {
+    padding: 30px;
 }
  
 nav {
@@ -57,4 +71,11 @@ nav {
 
 .list {
     padding: 20px;
+}
+
+footer {
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
 }

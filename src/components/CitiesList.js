@@ -4,9 +4,12 @@ import {RestaurantContext} from "../context/RestaurantContext";
 
 
 const CitiesList = () => {
-    const {cities , handleCitySelect} = useContext(RestaurantContext);
+    const {cities , handleCitySelect, pending} = useContext(RestaurantContext);
   return (
     <div>
+       { pending &&
+    <h2>Loading...</h2>
+  } 
       <h1>CitiesList</h1>
       {cities &&
         cities.map((city) => {

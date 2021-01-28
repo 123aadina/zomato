@@ -1,11 +1,14 @@
 import React, { useState, createContext } from "react";
 import { useHistory } from "react-router-dom";
 
+
 const initContext = {
   restaurants: [],
   cities: [],
   cityId: "",
   restaurant:null,
+  pending: false,
+  
 };
 
 export const RestaurantContext = createContext(initContext);
@@ -18,6 +21,9 @@ export const RestaurantContextProvider = ({ children }) => {
   const [cities, setCities] = useState(initContext.cities);
   const [cityId, setCityId] = useState(initContext.cityId);
   const [restaurant, setRestaurant] = useState(initContext.restaurant);
+  const [pending, setPending] = useState(initContext.pending);
+ 
+ 
 
   let myHeader = new Headers();
   myHeader.append("user-key", "e229f15cc483c5d7ec670a96e60bdece");
@@ -29,15 +35,17 @@ export const RestaurantContextProvider = ({ children }) => {
   };
 
   const getCities = async (city) => {
+    history.push("/citiesList");
+    setPending(true)
     const response = await fetch(
       `https://developers.zomato.com/api/v2.1/cities?q=${city}`,
       requestOption
     );
     const data = await response.json();
-
+    setPending(false)
     console.log(data.location_suggestions, "data");
     setCities(data.location_suggestions);
-    history.push("/citiesList");
+    
   };
 
   const handleCitySelect = (city) => {
@@ -66,9 +74,12 @@ export const RestaurantContextProvider = ({ children }) => {
     history.push("/restaurant");
   };
 
+ 
+
+
   return (
     <RestaurantContext.Provider
-      value={{ restaurants, cityId, cities, getCities, handleCitySelect, handleRestaurantSelect, restaurant}}
+      value={{ pending, restaurants, cityId, cities, getCities, handleCitySelect, handleRestaurantSelect, restaurant}}
     >
       {children}
     </RestaurantContext.Provider>
