@@ -1,81 +1,77 @@
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    width: 100vw;
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 50PX;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 50px;
 }
 .container {
-    height: 100%;
-    width: 100%;
-    width: 100vw;
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 50PX;
+  height: 100%;
+  width: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 50px;
 }
 
 h1 {
-    padding: 30px;
+  padding: 30px;
 }
- 
+
 nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 10vh;
-    background: crimson;
-    color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: crimson;
+  color: white;
 }
 .nav-link {
-    width: 40%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
 }
-
-
 
 .input {
- 
-    height: 100px;
-    padding: 20px;
+  height: 100px;
+  padding: 20px;
 }
 
-.city{
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    border:1px solid rgb(231, 217, 217);
+.city {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid rgb(231, 217, 217);
 }
 
-.cityName{
-    padding: 20px;
-    flex-wrap: 1;
+.cityName {
+  padding: 20px;
+  flex-wrap: 1;
 }
 
 .restName {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-
-.restDetail{
-    padding-top: 30px;
+.restDetail {
+  padding-top: 30px;
 }
 
 .list {
-    padding: 20px;
+  padding: 20px;
 }
 
 footer {
-    position:absolute;
-    left:0;
-    bottom:0;
-    right:0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

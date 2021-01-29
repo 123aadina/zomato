@@ -1,15 +1,12 @@
-import React ,{useContext}from "react";
-import Button from '@material-ui/core/Button';
-import {RestaurantContext} from "../context/RestaurantContext";
-
+import React, { useContext } from "react";
+import Button from "@material-ui/core/Button";
+import { RestaurantContext } from "../context/RestaurantContext";
 
 const CitiesList = () => {
-    const {cities , handleCitySelect, pending} = useContext(RestaurantContext);
+  const { cities, handleCitySelect, pending } = useContext(RestaurantContext);
   return (
     <div>
-       { pending &&
-    <h2>Loading...</h2>
-  } 
+      {pending && <h2>Loading...</h2>}
       <h1>CitiesList</h1>
       {cities &&
         cities.map((city) => {

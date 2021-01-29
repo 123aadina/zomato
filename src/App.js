@@ -7,36 +7,33 @@ import Footer from "./components/Footer";
 import RestaurantList from "./components/RestaurantList";
 import Restaurant from "./components/Restaurant";
 import CitiesList from "./components/CitiesList";
-
-import { BrowserRouter,Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 
 function App() {
   return (
     <div className="App">
-      
-        <BrowserRouter>
+      <BrowserRouter>
         <AuthProvider>
-        <Nav />
-        <RestaurantContextProvider>
-       
-        <Switch>
-          <Route path="/" exact component={Home}></Route>
-          <Route path="/restaurantList" exact component={RestaurantList}></Route>
-          <Route path="/restaurant" exact component={Restaurant}></Route>
-          <Route path="/citiesList" exact component={CitiesList}></Route>
-          
-          <Route path="/register" exact component={Register}></Route>
-          <Route path="/login" exact component={Login}></Route>
-          
-         
-        </Switch>
-        </RestaurantContextProvider>
+          <Nav />
+          <RestaurantContextProvider>
+            <Switch>
+              <Route path="/" exact component={Home}></Route>
+              <Route
+                path="/restaurantList"
+                exact
+                component={RestaurantList}
+              ></Route>
+              <Route path="/restaurant" exact component={Restaurant}></Route>
+              <Route path="/citiesList" exact component={CitiesList}></Route>
+              <Route path="/register" exact component={Register}></Route>
+              <Route path="/login" exact component={Login}></Route>
+            </Switch>
+          </RestaurantContextProvider>
         </AuthProvider>
         <Footer />
-        </BrowserRouter>
-     
+      </BrowserRouter>
     </div>
   );
 }
