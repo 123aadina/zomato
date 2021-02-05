@@ -20,6 +20,7 @@ body {
 
 h1 {
   padding: 30px;
+  margin-top: 10vh;
 }
 
 nav {
@@ -74,4 +75,9 @@ footer {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+
+TextField {
+  padding-bottom: 20px;
 }

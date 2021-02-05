@@ -13,6 +13,7 @@ const Restaurant = () => {
 
   return (
     <div>
+       <h1>Restaurants</h1>
       <div className="restDetail">
         {restaurant && <div>{restaurant.name}</div>}
         <Button onClick={handleShowMore}>More Information</Button>
