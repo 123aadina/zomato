@@ -27,31 +27,26 @@ const ChatRoom = ({auth}) => {
   
   const classes = useStyles();
 
-   console.log(addToUsersDb)
-   console.log(currentUser)
+
 
   const dummy = useRef();
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    /* const { currentUser.uid } = auth && auth.currentUser; */
-    const { uid } = auth && auth.currentUser;
-   /*  || {} */
-   /*  console.log(uid) */
-   /* addToUsersDb(uid) */
-    
-    const messagesRef = app.collection("user");
+  
+    addToUsersDb(msg)
+    /* const messagesRef = app.collection("user");
     const query = messagesRef.orderBy("createdAt").limit(25);
 
     await messagesRef.add({
      /* name:displayName, */
-      text: msg,
+     /*  text: msg,
       createdAt: db.firestore.FieldValue.serverTimestamp(),
       uid,
-    });
+    });  */
 
-    setMsg("");
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+   /*  setMsg("");
+    dummy.current.scrollIntoView({ behavior: "smooth" }); */
   };
 
 

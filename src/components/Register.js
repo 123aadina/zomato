@@ -24,12 +24,18 @@ const Register = () => {
   const {  handleSignUp } = useContext(AuthContext);
 
 
+  const handleSubmit  =(e)=> {
+    e.preventDefault()
+    handleSignUp({name, email, password})
+    }
+
+
 
   return (
     <div>
       <h1>Sign up</h1>
       
-      <form className={classes.root} onSubmit={() => handleSignUp} noValidate autoComplete="off">
+      <form className={classes.root} onSubmit={handleSubmit} noValidate autoComplete="off">
       <TextField
           id="standard-basic"
           name="name"

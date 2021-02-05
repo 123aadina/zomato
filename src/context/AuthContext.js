@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory ,Redirect} from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import app from "../components/config/fbConfig";
 const db = app.firestore();
 
@@ -11,72 +11,74 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   let history = useHistory();
 
-  const handleSignUp = async ({ name}) => {
-   
+  const handleSignUp = async ({ name ,email, password }) => {
+    console.log(email)
     try {
-      await app.auth().createUserWithEmailAndPassword(currentUser.email, currentUser.password)
-      ((userCredential)=> {
-        let user = userCredential.user;
-        console.log("user", user)
+      const userCredential = await app
+        .auth().createUserWithEmailAndPassword(email,password);
 
-        setCurrentUser(user)
-        setIsAuthenticated(true)
+      let user = userCredential.user;
+      console.log("user", user);
 
-        db.collection("users").doc(currentUser.uid).set({
-          name,
-          //favorites: []
-        });
-       
-      })
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+
+      db.collection("users").doc(user.uid).set({
+        name,
+        messages:[],
+      });
       history.push("/");
     } catch (error) {
       alert(error);
     }
   };
 
+  const handleLogin = async ({ email, password }) => {
+    console.log("email", email);
+    try {
+      const userCredential = await app
+        .auth()
+        .signInWithEmailAndPassword(email, password);
 
+      let user = userCredential.user;
+      console.log("user", user);
 
-   const handleLogin = async ({email, password}) => {
-     
-      console.log("email", email);
-      try {
-        await app.auth().signInWithEmailAndPassword(email, password)
-        ((userCredential)=> {
-          let user = userCredential.user;
-          console.log("user", user)
-  
-          setCurrentUser(user)
-          setIsAuthenticated(true)
-       }) 
-     }
-      catch (error) {
-        alert(error);
-      }
-    }; 
- 
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   /*   if (currentUser) {
       
         return <Redirect to="/" />;
       } */
 
-      /*   {currentUser ? <p>Welcome {currentUser}</p> : <p>Not authenticated</p> } */
+  /*   {currentUser ? <p>Welcome {currentUser}</p> : <p>Not authenticated</p> } */
 
-
-  const addToUsersDb = (userDb) => {
+  const addToUsersDb = (msg) => {
     app.auth().onAuthStateChanged((user) => {
+      console.log(user, "user");
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef.update({
-          send: app.firestore.FieldValue.arrayUnion(userDb),
+          messages: app.firestore.FieldValue.arrayUnion({
+            name: user.displayName,
+            text: msg,
+            createdAt: new Date()
+          }),
         });
       } else {
-        history.push('/login')
+        history.push("/login");
       }
     });
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, handleSignUp,handleLogin,  addToUsersDb }}>
+    <AuthContext.Provider
+      value={{ currentUser, handleSignUp, handleLogin, addToUsersDb }}
+    >
       {children}
     </AuthContext.Provider>
   );

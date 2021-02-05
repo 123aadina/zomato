@@ -21,13 +21,18 @@ const Login = () => {
 
   const { currentUser, handleLogin } = useContext(AuthContext);
 
+  const handleSubmit  =(e)=> {
+  e.preventDefault()
+  handleLogin({email, password})
+  }
+
   return (
     <div>
       <h1>welcome to our page {currentUser}</h1>
 
       <form
         className={classes.root}
-        onSubmit={() => handleLogin}
+        onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
       >
