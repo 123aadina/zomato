@@ -5,9 +5,10 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { AuthContext } from "../context/AuthContext";
-import app from "../components/config/fbConfig";
-const auth = app.auth();
-const db = app.firestore();
+import { ChatContext } from "../context/ChatContext";
+import firebase from "../components/config/fbConfig";
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 
 
@@ -21,63 +22,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ChatRoom = ({auth}) => {
-  const { currentUser, addToUsersDb } = useContext(AuthContext);
+  const { currentUser , isAuthenticated} = useContext(AuthContext);
+  const {messages, writeMessages } = useContext(ChatContext)
+ //this currentUser is just user it does not show the name of the logged in user
+  console.log(currentUser)
+
   const [msg, setMsg] = useState("");
-  const [messages, setMessages] = useState([]);
+  /* const [messages, setMessages] = useState([]); */
+ /*  const [text, setText] = useState(""); */
+
   
   const classes = useStyles();
-
-
-
   const dummy = useRef();
+
+
 
   const sendMessage = async (e) => {
     e.preventDefault();
-  
-    addToUsersDb(msg)
-    /* const messagesRef = app.collection("user");
-    const query = messagesRef.orderBy("createdAt").limit(25);
-
-    await messagesRef.add({
-     /* name:displayName, */
-     /*  text: msg,
-      createdAt: db.firestore.FieldValue.serverTimestamp(),
-      uid,
-    });  */
-
-   /*  setMsg("");
-    dummy.current.scrollIntoView({ behavior: "smooth" }); */
+     //this currentUser is just user it does not show the name of the logged in user
+   /*  const { uid } = auth.currentUser; */
+    await writeMessages(msg)
+    console.log(msg)
+   setMsg("")
+    /*  dummy.current.scrollIntoView({ behavior: "smooth" }); */
   };
-
-
-  const getMasseges = () => {
-    db.collection("users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.data())
-          console.log(`${doc.id} => ${doc.data()}`);
-        });
-      });
-  };
-
-  useEffect(() => {
-    getMasseges();
-  }, []);
 
   const updateTextFields = (e) => {
     e.preventDefault();
-    console.log("updateTextFields", e.target.value);
     setMsg(e.target.value);
+    console.log(msg)
   };
+  
   return (
     <div>
       <h1>Chat app</h1>
+      <h1>{messages}</h1>
+      
       <main>
-        {messages &&
+      <h1>{msg}</h1>
+           {messages.length &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-        <span ref={dummy}></span>
+        {/* <span ref={dummy}></span> */}
       </main>
 
       <form
@@ -114,71 +100,10 @@ export default ChatRoom;
 
 /*
 
-
-
-function App() {
-
-  const [user] = useAuthState(auth);
-
-  return (
-    <div className="App">
-      <header>
-        <h1>⚛️🔥💬</h1>
-        <SignOut />
-      </header>
-
-      <section>
-        {user ? <ChatRoom /> : <SignIn />}
-      </section>
-
-    </div>
-  );
-}
-
-function SignIn() {
-
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-
-  return (
-    <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
-    </>
-  )
-
-}
-
-function SignOut() {
-  return auth.currentUser && (
-    <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
-  )
-}
-
-
 function ChatRoom() {
   const dummy = useRef();
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
-
-  const [messages] = useCollectionData(query, { idField: 'id' });
-
-  const [formValue, setFormValue] = useState('');
-
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-
-    const { uid, photoURL } = auth.currentUser;
-
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL
-    })
 
     setFormValue('');
     dummy.current.scrollIntoView({ behavior: 'smooth' });
@@ -219,3 +144,19 @@ function ChatMessage(props) {
 
 
 export default App;*/
+
+
+
+/*   const getMasseges = () => {
+    db.collection("users")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data())
+          console.log(`${doc.id} => ${doc.data()}`); */
+         /*  if (doc ) {
+           querySnapshot.push(doc.data())
+          } */
+  /*       });
+      });
+  }; */

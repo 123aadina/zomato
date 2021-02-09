@@ -21,14 +21,14 @@ const Login = () => {
 
   const { currentUser, handleLogin } = useContext(AuthContext);
 
-  const handleSubmit  =(e)=> {
+  const handleSubmit =(e)=> {
   e.preventDefault()
   handleLogin({email, password})
   }
 
   return (
     <div>
-      <h1>welcome to our page {currentUser}</h1>
+    { currentUser && <h1>welcome to our page {currentUser.displayName}</h1>}
 
       <form
         className={classes.root}

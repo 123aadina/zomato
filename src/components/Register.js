@@ -2,9 +2,8 @@ import React, { useState, useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import {Typography} from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 import { AuthContext } from "../context/AuthContext";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,27 +18,29 @@ const Register = () => {
   const classes = useStyles();
   const [name, setName] = useState(" ");
   const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+  const [password, setPassword] = useState("");
 
-  const {  handleSignUp } = useContext(AuthContext);
+  const { handleSignUp } = useContext(AuthContext);
 
-
-  const handleSubmit  =(e)=> {
-    e.preventDefault()
-    handleSignUp({name, email, password})
-    }
-
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignUp({ name, email, password });
+  };
 
   return (
     <div>
       <h1>Sign up</h1>
-      
-      <form className={classes.root} onSubmit={handleSubmit} noValidate autoComplete="off">
-      <TextField
+
+      <form
+        className={classes.root}
+        onSubmit={handleSubmit}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
           id="standard-basic"
           name="name"
-          type="text"
+          type="name"
           label="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
@@ -47,7 +48,7 @@ const Register = () => {
         <TextField
           id="standard-basic"
           name="email"
-          type="text"
+          type="email"
           label="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -55,22 +56,16 @@ const Register = () => {
         <TextField
           id="standard-basic"
           name="password"
-          type="text"
+          type="password"
           label="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-         <Typography className={classes.divider} />
-        <Button
-          size="large"
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
+        <Typography className={classes.divider} />
+        <Button size="large" variant="contained" color="primary" type="submit">
           Sign Up
         </Button>
       </form>
-      
     </div>
   );
 };
@@ -78,10 +73,3 @@ const Register = () => {
 export default Register;
 
 
-
-/* const [state, setState] =useState({email:'', password:""}); */
-/**const handelChange = (e) => {
- * setState({ ...state, [e.target.value]: e.target.value})
- *  setState({ ...state, [e.target.name]: e.target.value})
- * }
- *  */

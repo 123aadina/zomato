@@ -3,6 +3,7 @@ import React from "react";
 import Home from "./components/Home";
 import { RestaurantContextProvider } from "./context/RestaurantContext";
 import { AuthProvider } from "./context/AuthContext";
+import { ChatContext } from "./context/ChatContext";
 import Footer from "./components/Footer";
 import RestaurantList from "./components/RestaurantList";
 import Restaurant from "./components/Restaurant";
@@ -17,6 +18,7 @@ import {
 import Register from "./components/Register";
 import Login from "./components/Login";
 import NavTabs from "./components/NavTabs";
+import { ChatContextProvider } from "./context/ChatContext";
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
      <BrowserRouter>
      <AuthProvider>
        <RestaurantContextProvider> 
+         <ChatContextProvider>
          <NavTabs/>
          <Switch>
            <Route path="/" exact component={Home}></Route>
@@ -40,6 +43,7 @@ function App() {
            <Route path="/login" exact component={Login}></Route>
            <Route path="/chatRoom" exact component={ChatRoom}></Route>
          </Switch>
+         </ChatContextProvider>
        </RestaurantContextProvider>
      </AuthProvider>
    </BrowserRouter>
