@@ -18,9 +18,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        setCurrentUser({ email: user.email, displayName: user.displayName });
+        console.log('user', user)
+        setCurrentUser({ email: user.email, displayName: user.displayName, uid: user.uid });
         setIsAuthenticated(true);
       } else {
+        console.log('not loogged in')
         // No user is signed in.
       }
     });
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         photoURL: "https://example.com/jane-q-user/profile.jpg",
       });
       // Update successful.
-      setCurrentUser({ email: user.email, displayName: user.displayName });
+      setCurrentUser({ email: user.email, displayName: user.displayName , uid: user.uid  });
       setIsAuthenticated(true);
     } catch (error) {
       console.log("error", error);
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, handleSignUp, handleLogin }}>
+    <AuthContext.Provider value={{ isAuthenticated,currentUser, handleSignUp, handleLogin }}>
       {children}
     </AuthContext.Provider>
   );

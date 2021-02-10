@@ -8,7 +8,8 @@ const Restaurant = () => {
   const { restaurant } = useContext(RestaurantContext);
 
   const handleShowMore = () => {
-    setShowDetails(!showDetails);
+    setShowDetails(true);
+  /*   setShowDetails(false); */
   };
 
   return (
@@ -18,7 +19,7 @@ const Restaurant = () => {
         {restaurant && <div>{restaurant.name}</div>}
         <Button onClick={handleShowMore}>More Information</Button>
       </div>
-      {showDetails && <Details item={restaurant} />}
+      {showDetails && <Details item={restaurant}  />}
     </div>
   );
 };

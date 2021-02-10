@@ -4,7 +4,6 @@ const auth = firebase.auth();
 
 
 const ChatMessage = (props) => {
-  console.log(props)
   /* console.log(props.currentUser.uid) */
   /* console.log(props.message.uid) */
     const {  text, uid, } = props.message;

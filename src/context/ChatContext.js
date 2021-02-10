@@ -25,9 +25,7 @@ export const ChatContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   const db = firebase.firestore();
 
-  /* useEffect(() => {
-    getMessages();
-  }, []); */
+  
 
   const writeMessages = async (msg) => {
     console.log(currentUser);
@@ -39,6 +37,7 @@ export const ChatContextProvider = ({ children }) => {
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
+        getMessages();
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -55,12 +54,12 @@ export const ChatContextProvider = ({ children }) => {
         let chatMessages = [];
 
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
-          console.log(`${doc.id} => ${doc.data()}`);
+          // console.log(doc.data());
+          // console.log(`${doc.id} => ${doc.data()}`);
 
           chatMessages.push(doc.data());
         });
-        console.log(chatMessages);
+        // console.log(chatMessages);
         setMessages(chatMessages);
       });
     

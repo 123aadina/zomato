@@ -1,20 +1,22 @@
+
 import React from "react";
+import ListItemText from "@material-ui/core/ListItemText";
 import { Card } from "@material-ui/core";
 
 const Details = ({ item }) => {
-  console.log("item", item);
+ /*  console.log("item", item); */
 
   return (
     <div className="info">
       <h1>Details</h1>
-      <div className="list">Name: {item.name}</div>
-      <div className="list"> Address: {item.location.address}</div>
-      <div className="list"> Url: {item.url}</div>
-      <div className="list"> Price: {item.price_range}</div>
-      <div className="list"> Currency: {item.photos}</div>
-      <div className="list"> Highlights: {item.highlights}</div>
+      <ListItemText primary={item.name} secondary={item.location.address} />
+      <ListItemText primary={item.url} secondary={item.photos} />
+      <ListItemText primary={item.highlights} secondary={item.photos} />
     </div>
   );
 };
 
 export default Details;
+
+
+  
