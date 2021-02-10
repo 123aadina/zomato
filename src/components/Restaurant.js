@@ -1,26 +1,31 @@
-import React, { useState, useContext } from "react";
-import Details from "./Details";
+import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { RestaurantContext } from "../context/RestaurantContext";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const Restaurant = () => {
-  const [showDetails, setShowDetails] = useState(false);
   const { restaurant } = useContext(RestaurantContext);
-
-  const handleShowMore = () => {
-    setShowDetails(true);
-  /*   setShowDetails(false); */
-  };
 
   return (
     <div>
-       <h1>Restaurants</h1>
+      <h1>Restaurant detail</h1>
       <div className="restDetail">
         {restaurant && <div>{restaurant.name}</div>}
-        <Button onClick={handleShowMore}>More Information</Button>
+        <ListItemText
+          primary={restaurant.name}
+          secondary={restaurant.location.address}
+        />
+        <ListItemText primary={restaurant.url} secondary={restaurant.photos} />
+        <ListItemText
+          primary={restaurant.highlights}
+          secondary={restaurant.photos}
+        />
       </div>
-      {showDetails && <Details item={restaurant}  />}
     </div>
   );
 };
 export default Restaurant;
+
+
+
+
