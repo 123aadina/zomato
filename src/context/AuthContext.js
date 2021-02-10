@@ -82,26 +82,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-/* Create user */
-/** 
-firebase.auth().createUserWithEmailAndPassword(email, password, nickName)
-.then(() => {
-    const user = firebase.auth().currentUser;
-    user.updateProfile({
-        displayName: nickName
-    });
- })
-.catch(e => {
-    console.log(e.code, e.message);
-});*/
 
-/* which then fires the function */
 
-/**firebase.auth().onAuthStateChanged((user) => {
-if (user) {
-store.dispatch(login(user.uid, user.displayName));
-} else {
-store.dispatch(logout());
-}
-})
- */

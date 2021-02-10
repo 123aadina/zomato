@@ -15,7 +15,6 @@ const initContext = {
   },
 };
 
-// 3 Login & Register components
 //update router and wrap auth provider
 
 export const ChatContext = createContext(initContext);
@@ -31,7 +30,7 @@ export const ChatContextProvider = ({ children }) => {
   }, []);
 
   const writeMessages = async (msg) => {
-      console.log(currentUser)
+    console.log(currentUser);
     db.collection("messages")
       .add({
         displayName: currentUser.displayName,
@@ -45,29 +44,26 @@ export const ChatContextProvider = ({ children }) => {
         console.error("Error adding document: ", error);
       });
     console.log(msg);
-  /*   console.log(user.uid); */
-    /* console.log(user.email); */
   };
 
   const getMessages = () => {
-    let chatMessages = [];
+   
     db.collection("messages")
       .get()
       .then((querySnapshot) => {
+
+        let chatMessages = [];
+
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
-          console.log(doc.data());
           console.log(doc.data());
           console.log(`${doc.id} => ${doc.data()}`);
 
-          /* let chat = {}
-                chat.name = doc.data().name;
-                chat.messages = doc.data().messages;*/
           chatMessages.push(doc.data());
         });
+        console.log(chatMessages);
+        setMessages(chatMessages);
       });
-    console.log(chatMessages);
-     /* setMessages(chatMessages); */
+    
   };
 
   useEffect(() => {
@@ -81,7 +77,3 @@ export const ChatContextProvider = ({ children }) => {
     </ChatContext.Provider>
   );
 };
-
-
-
-

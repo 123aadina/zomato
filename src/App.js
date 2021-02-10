@@ -3,7 +3,6 @@ import React from "react";
 import Home from "./components/Home";
 import { RestaurantContextProvider } from "./context/RestaurantContext";
 import { AuthProvider } from "./context/AuthContext";
-import { ChatContext } from "./context/ChatContext";
 import Footer from "./components/Footer";
 import RestaurantList from "./components/RestaurantList";
 import Restaurant from "./components/Restaurant";
