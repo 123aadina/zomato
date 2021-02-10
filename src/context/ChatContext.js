@@ -25,9 +25,9 @@ export const ChatContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   const db = firebase.firestore();
 
-  useEffect(() => {
+  /* useEffect(() => {
     getMessages();
-  }, []);
+  }, []); */
 
   const writeMessages = async (msg) => {
     console.log(currentUser);
