@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Button from "@material-ui/core/Button";
 import { RestaurantContext } from "../context/RestaurantContext";
 import ListItemText from "@material-ui/core/ListItemText";
 
@@ -12,7 +11,7 @@ const Restaurant = () => {
       <div className="restDetail">
         {restaurant && <div>{restaurant.name}</div>}
         <ListItemText
-          primary={restaurant.name}
+          /* primary={restaurant.name} */
           secondary={restaurant.location.address}
         />
         <ListItemText primary={restaurant.url} secondary={restaurant.photos} />
@@ -25,7 +24,3 @@ const Restaurant = () => {
   );
 };
 export default Restaurant;
-
-
-
-

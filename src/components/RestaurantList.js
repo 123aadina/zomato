@@ -1,4 +1,4 @@
-import React, {  useContext} from "react";
+import React, { useContext} from "react";
 import Button from "@material-ui/core/Button";
 import {RestaurantContext} from "../context/RestaurantContext";
 
@@ -11,8 +11,8 @@ const {restaurants, handleRestaurantSelect} = useContext(RestaurantContext)
       {restaurants.length !== 0 &&
         restaurants.map((item, id) => {
           return (
-            <div className="restName">
-              <div>{item.restaurant.name}</div>
+            <div className="city">
+              <div className="cityName">{item.restaurant.name}</div>
               <Button onClick={() => handleRestaurantSelect(item.restaurant)}>
                 Select
               </Button>
